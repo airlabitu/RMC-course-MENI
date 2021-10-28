@@ -1,0 +1,16 @@
+Min depth :5
+Max depth :995
+Threshold :40.0
+Dist threshold :5.0
+Draw blobs :true
+Ignore areas :
+Input mode (0=kinect, 1=webcam, 2=simulation video) :0
+Min blob size :500
+OSC blob data primary connection  [listening port] [remote port] [remote IP] :12345:6789:10.26.100.96
+OSC blob data secondary connection [listening port] [remote port] [remote IP] :54321:6789:localhost
+Sending OSC :false
+Simulation video :mix.mp4
+Nested blob filter :true
+Disable simulation :false
+Exit on Kinect error :false
+Logging to textfile :false

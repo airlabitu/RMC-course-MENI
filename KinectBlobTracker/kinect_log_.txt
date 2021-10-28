@@ -1,0 +1,223 @@
+2/9/2021:11:46:30 : ------------------
+2/9/2021:11:46:30 : Starting up sketch
+2/9/2021:11:46:31 : Starting kinect
+2/9/2021:11:46:31 : Kinect number of devices 0 or less
+2/9/2021:11:46:31 : No Kinect connected
+2/9/2021:11:47:44 : ------------------
+2/9/2021:11:47:44 : Starting up sketch
+2/9/2021:11:47:45 : Starting kinect
+2/9/2021:11:47:46 : Kinect number of devices 0 or less
+2/9/2021:11:47:46 : No Kinect connected
+27/9/2021:20:42:9 : ------------------
+27/9/2021:20:42:9 : Starting up sketch
+27/9/2021:20:48:49 : ------------------
+27/9/2021:20:48:49 : Starting up sketch
+27/9/2021:20:48:50 : Starting kinect
+27/9/2021:20:48:50 : Kinect number of devices 0 or less
+27/9/2021:20:48:50 : No Kinect connected
+27/9/2021:20:49:25 : ------------------
+27/9/2021:20:49:25 : Starting up sketch
+27/9/2021:20:49:26 : Starting kinect
+27/9/2021:20:49:26 : Kinect number of devices 0 or less
+27/9/2021:20:49:26 : No Kinect connected
+27/9/2021:21:28:33 : ------------------
+27/9/2021:21:28:33 : Starting up sketch
+27/9/2021:21:28:34 : Starting kinect
+27/9/2021:21:28:35 : Kinect number of devices 0 or less
+27/9/2021:21:28:35 : No Kinect connected
+27/9/2021:21:28:50 : Starting webcam
+27/9/2021:21:29:30 : ------------------
+27/9/2021:21:29:30 : Starting up sketch
+27/9/2021:21:29:32 : Starting webcam
+27/9/2021:21:30:23 : ------------------
+27/9/2021:21:30:23 : Starting up sketch
+27/9/2021:21:30:24 : Starting kinect
+27/9/2021:21:30:24 : Kinect number of devices 0 or less
+27/9/2021:21:30:24 : No Kinect connected
+27/9/2021:21:30:28 : Starting webcam
+27/9/2021:21:30:32 : Starting video simulation
+27/9/2021:21:30:32 : Video simullation disabled
+27/9/2021:21:30:35 : Starting kinect
+27/9/2021:21:30:35 : Kinect number of devices 0 or less
+27/9/2021:21:30:41 : Starting webcam
+27/9/2021:21:30:48 : Starting video simulation
+27/9/2021:21:30:48 : Video simullation disabled
+27/9/2021:21:30:50 : Starting kinect
+27/9/2021:21:30:50 : Kinect number of devices 0 or less
+27/9/2021:21:30:53 : Starting webcam
+27/9/2021:21:30:57 : Starting video simulation
+27/9/2021:21:30:57 : Video simullation disabled
+27/9/2021:21:30:59 : Starting kinect
+27/9/2021:21:30:59 : Kinect number of devices 0 or less
+27/9/2021:21:31:2 : Starting webcam
+27/9/2021:21:31:6 : Starting video simulation
+27/9/2021:21:31:6 : Video simullation disabled
+27/9/2021:21:31:11 : Starting kinect
+27/9/2021:21:31:11 : Kinect number of devices 0 or less
+27/9/2021:21:31:12 : Starting webcam
+27/9/2021:21:31:20 : Starting video simulation
+27/9/2021:21:31:20 : Video simullation disabled
+27/9/2021:21:31:23 : Starting kinect
+27/9/2021:21:31:23 : Kinect number of devices 0 or less
+27/9/2021:21:31:24 : Starting webcam
+27/9/2021:21:31:30 : Starting video simulation
+27/9/2021:21:31:30 : Video simullation disabled
+27/9/2021:21:31:31 : Starting kinect
+27/9/2021:21:31:31 : Kinect number of devices 0 or less
+27/9/2021:21:42:34 : ------------------
+27/9/2021:21:42:34 : Starting up sketch
+27/9/2021:21:42:35 : Starting kinect
+27/9/2021:21:42:35 : Kinect number of devices 0 or less
+27/9/2021:21:42:35 : No Kinect connected
+27/9/2021:21:42:43 : ------------------
+27/9/2021:21:42:43 : Starting up sketch
+27/9/2021:21:42:44 : Starting kinect
+27/9/2021:21:42:44 : Kinect number of devices 0 or less
+27/9/2021:21:42:44 : No Kinect connected
+27/9/2021:21:43:16 : ------------------
+27/9/2021:21:43:16 : Starting up sketch
+27/9/2021:21:43:17 : Starting kinect
+27/9/2021:21:43:17 : Kinect number of devices 0 or less
+27/9/2021:21:43:17 : No Kinect connected
+27/9/2021:21:43:28 : Starting webcam
+27/9/2021:21:43:39 : Starting video simulation
+27/9/2021:21:43:39 : Video simullation disabled
+27/9/2021:21:43:48 : Starting kinect
+27/9/2021:21:43:48 : Kinect number of devices 0 or less
+27/9/2021:21:44:2 : ------------------
+27/9/2021:21:44:2 : Starting up sketch
+27/9/2021:21:44:3 : Starting kinect
+27/9/2021:21:44:3 : Kinect number of devices 0 or less
+27/9/2021:21:44:3 : No Kinect connected
+27/9/2021:21:44:6 : Starting webcam
+27/9/2021:21:44:9 : Starting video simulation
+27/9/2021:21:46:35 : ------------------
+27/9/2021:21:46:35 : Starting up sketch
+27/9/2021:21:46:36 : Starting kinect
+27/9/2021:21:46:36 : Kinect number of devices 0 or less
+27/9/2021:21:46:36 : No Kinect connected
+27/9/2021:21:47:37 : ------------------
+27/9/2021:21:47:37 : Starting up sketch
+27/9/2021:21:47:38 : Starting kinect
+27/9/2021:21:47:38 : Kinect number of devices 0 or less
+27/9/2021:21:47:38 : No Kinect connected
+27/9/2021:21:47:41 : Starting webcam
+27/9/2021:21:47:43 : Starting video simulation
+27/9/2021:21:49:43 : ------------------
+27/9/2021:21:49:43 : Starting up sketch
+27/9/2021:21:49:44 : Starting kinect
+27/9/2021:21:49:44 : Kinect number of devices 0 or less
+27/9/2021:21:49:44 : No Kinect connected
+27/9/2021:21:49:51 : Starting video simulation
+27/9/2021:23:18:24 : ------------------
+27/9/2021:23:18:24 : Starting up sketch
+27/9/2021:23:18:25 : Starting kinect
+27/9/2021:23:18:25 : Kinect number of devices 0 or less
+27/9/2021:23:19:24 : ------------------
+27/9/2021:23:19:24 : Starting up sketch
+27/9/2021:23:19:25 : Starting kinect
+27/9/2021:23:19:25 : Kinect number of devices 0 or less
+27/9/2021:23:23:4 : ------------------
+27/9/2021:23:23:4 : Starting up sketch
+27/9/2021:23:23:40 : ------------------
+27/9/2021:23:23:40 : Starting up sketch
+27/9/2021:23:23:41 : Starting kinect
+27/9/2021:23:23:41 : Kinect number of devices 0 or less
+27/9/2021:23:26:19 : ------------------
+27/9/2021:23:26:19 : Starting up sketch
+27/9/2021:23:26:20 : Starting kinect
+27/9/2021:23:26:20 : Kinect number of devices 0 or less
+27/9/2021:23:32:56 : ------------------
+27/9/2021:23:32:56 : Starting up sketch
+27/9/2021:23:33:53 : ------------------
+27/9/2021:23:33:53 : Starting up sketch
+27/9/2021:23:33:54 : Starting kinect
+27/9/2021:23:33:54 : Kinect number of devices 0 or less
+27/9/2021:23:37:22 : ------------------
+27/9/2021:23:37:22 : Starting up sketch
+27/9/2021:23:37:23 : Starting kinect
+27/9/2021:23:37:23 : Kinect number of devices 0 or less
+27/9/2021:23:37:57 : ------------------
+27/9/2021:23:37:57 : Starting up sketch
+27/9/2021:23:37:58 : Starting kinect
+27/9/2021:23:37:58 : Kinect number of devices 0 or less
+27/9/2021:23:39:19 : ------------------
+27/9/2021:23:39:19 : Starting up sketch
+27/9/2021:23:39:20 : Starting kinect
+27/9/2021:23:39:20 : Kinect number of devices 0 or less
+27/9/2021:23:39:37 : ------------------
+27/9/2021:23:39:37 : Starting up sketch
+27/9/2021:23:39:38 : Starting kinect
+27/9/2021:23:39:38 : Kinect number of devices 0 or less
+27/9/2021:23:41:34 : ------------------
+27/9/2021:23:41:34 : Starting up sketch
+27/9/2021:23:41:35 : Starting kinect
+27/9/2021:23:41:35 : Kinect number of devices 0 or less
+27/9/2021:23:45:46 : ------------------
+27/9/2021:23:45:46 : Starting up sketch
+27/9/2021:23:45:47 : Starting kinect
+27/9/2021:23:45:47 : Kinect number of devices 0 or less
+27/9/2021:23:47:25 : ------------------
+27/9/2021:23:47:25 : Starting up sketch
+27/9/2021:23:47:27 : Starting kinect
+27/9/2021:23:47:27 : Kinect number of devices 0 or less
+27/9/2021:23:50:3 : ------------------
+27/9/2021:23:50:3 : Starting up sketch
+27/9/2021:23:50:4 : Starting kinect
+27/9/2021:23:50:4 : Kinect number of devices 0 or less
+28/9/2021:9:33:25 : ------------------
+28/9/2021:9:33:25 : Starting up sketch
+28/9/2021:9:33:27 : Starting kinect
+28/9/2021:9:33:27 : Kinect number of devices 0 or less
+28/9/2021:9:34:31 : ------------------
+28/9/2021:9:34:31 : Starting up sketch
+28/9/2021:9:34:33 : Starting kinect
+28/9/2021:9:34:34 : Kinect number of devices 0 or less
+28/9/2021:10:2:49 : ------------------
+28/9/2021:10:2:49 : Starting up sketch
+28/9/2021:10:2:51 : Starting kinect
+28/9/2021:10:2:51 : Kinect number of devices 0 or less
+28/9/2021:11:18:55 : ------------------
+28/9/2021:11:18:55 : Starting up sketch
+28/9/2021:11:18:57 : Starting kinect
+28/9/2021:11:18:57 : Kinect number of devices 0 or less
+28/9/2021:11:21:18 : ------------------
+28/9/2021:11:21:18 : Starting up sketch
+28/9/2021:11:21:20 : Starting kinect
+28/9/2021:11:21:20 : Kinect number of devices 0 or less
+28/9/2021:11:41:56 : ------------------
+28/9/2021:11:41:56 : Starting up sketch
+28/9/2021:11:41:58 : Starting kinect
+28/9/2021:11:41:58 : Kinect number of devices 0 or less
+28/9/2021:11:43:15 : ------------------
+28/9/2021:11:43:15 : Starting up sketch
+28/9/2021:11:43:17 : Starting kinect
+28/9/2021:11:43:17 : Kinect number of devices 0 or less
+28/9/2021:11:45:31 : ------------------
+28/9/2021:11:45:31 : Starting up sketch
+28/9/2021:11:45:33 : Starting kinect
+28/9/2021:11:45:33 : Kinect number of devices 0 or less
+28/9/2021:11:46:10 : ------------------
+28/9/2021:11:46:10 : Starting up sketch
+28/9/2021:11:46:12 : Starting kinect
+28/9/2021:11:46:12 : Kinect number of devices 0 or less
+28/9/2021:11:47:49 : ------------------
+28/9/2021:11:47:49 : Starting up sketch
+28/9/2021:11:47:51 : Starting kinect
+28/9/2021:11:47:52 : Kinect number of devices 0 or less
+28/9/2021:11:54:34 : ------------------
+28/9/2021:11:54:34 : Starting up sketch
+28/9/2021:11:54:36 : Starting kinect
+28/9/2021:11:54:37 : Kinect number of devices 0 or less
+28/9/2021:11:55:43 : ------------------
+28/9/2021:11:55:43 : Starting up sketch
+28/9/2021:11:55:45 : Starting kinect
+28/9/2021:11:55:45 : Kinect number of devices 0 or less
+28/9/2021:12:17:40 : ------------------
+28/9/2021:12:17:40 : Starting up sketch
+28/9/2021:12:17:42 : Starting kinect
+28/9/2021:12:17:43 : Kinect number of devices 0 or less
+28/9/2021:15:8:39 : ------------------
+28/9/2021:15:8:39 : Starting up sketch
+28/9/2021:15:8:41 : Starting kinect
+28/9/2021:15:8:41 : Kinect number of devices 0 or less
