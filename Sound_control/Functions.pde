@@ -178,17 +178,17 @@ void showSphereCircle() {
 void saveSpheres(){
         String [] saveData = new String[spheres.size()];
       int index = 0;
-      saveStrings("sphere-settings.txt", new String [0]);
+      saveStrings("data/sphere-settings.txt", new String [0]);
       for (Sphere sp: spheres){
         saveData[index] = ""+sp.x+","+sp.y+","+sp.radius+","+sp.id+","+sp.group;
-        saveStrings("sphere-settings.txt", saveData);
+        saveStrings("data/sphere-settings.txt", saveData);
         index++;
         //int x_, int y_, int radius_, String track_, PApplet pa_, int id_, int group_
       }
 }
 
 void loadSpheres(){
-  String [] sp = loadStrings("sphere-settings.txt");
+  String [] sp = loadStrings("data/sphere-settings.txt");
   for (int i = 0; i < sp.length; i++){
     String [] entry = split(sp[i], ',');
     Sphere s = new Sphere(int(entry[0]), int(entry[1]), int(entry[2]), null, this, int(entry[3]), int(entry[4]));
