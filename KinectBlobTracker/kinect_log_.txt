@@ -221,3 +221,11 @@
 28/9/2021:15:8:39 : Starting up sketch
 28/9/2021:15:8:41 : Starting kinect
 28/9/2021:15:8:41 : Kinect number of devices 0 or less
+28/10/2021:22:24:37 : ------------------
+28/10/2021:22:24:37 : Starting up sketch
+28/10/2021:22:24:39 : Starting kinect
+28/10/2021:22:24:40 : Kinect number of devices 0 or less
+29/10/2021:0:7:44 : ------------------
+29/10/2021:0:7:44 : Starting up sketch
+29/10/2021:0:7:46 : Starting kinect
+29/10/2021:0:7:46 : Kinect number of devices 0 or less

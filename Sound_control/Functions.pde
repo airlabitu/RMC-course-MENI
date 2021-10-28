@@ -112,11 +112,13 @@ void soundManipulation(Sphere s, ArrayList<Sphere> s_array, int dist, String typ
 
 // key for toggling mouse simulation
 void keyPressed() {
-  if (key == 's') simulate = !simulate;
-  if (key == '0' || key == '1' || key == '2' || key == '3' || key == '4' || key == '5' || key == '6' || key == '7' || key =='8' || key == '9'){
+  if (key == 'm') mode = !mode; // switch mode
+  else if (key == 'p') placingSpheres = !placingSpheres; // switch placingSpheres state
+  else if (placingSpheres && (key == '0' || key == '1' || key == '2' || key == '3' || key == '4' || key == '5' || key == '6' || key == '7' || key =='8' || key == '9')){
     nextID += key;
   }
-  else if (keyCode == BACKSPACE && nextID.length() > 0) nextID = nextID.substring(0, nextID.length()-1); //nextID = nextID.substring(nextID.length()-1, nextID.length()); 
+  else if (placingSpheres && keyCode == BACKSPACE && nextID.length() > 0) nextID = nextID.substring(0, nextID.length()-1); //nextID = nextID.substring(nextID.length()-1, nextID.length()); 
+  
 }
 
 void mousePressed() {
@@ -145,6 +147,8 @@ void mouseReleased() {
       spheres.add(s);
       nextID = "";
       
+      saveSpheres();
+      
       
       //t.addIgnoreArea(pressX, pressY, int(dist(pressX, pressY, releaseX, releaseY)));
       //t.ignoreAreas.add(new Area(pressX, pressY, int(dist(pressX, pressY, releaseX, releaseY)))); // move inside tracker class
@@ -155,17 +159,41 @@ void mouseReleased() {
     for (int i = 0; i < spheres.size(); i++){
       if (dist(mouseX, mouseY, spheres.get(i).x, spheres.get(i).y) < spheres.get(i).radius) {
         spheres.remove(i);
+        saveSpheres();
       }
     }
   }
 }
 
-void showIgnoreCircle() {
+void showSphereCircle() {
   if (!mousePressed) return; // no need to draw if the mouse isn't pressed
   noFill();
   if (dragState == 0 || dragState == 1) {
     stroke(0, 255, 0);
     float size = max(5, dist(pressX, pressY, releaseX, releaseY));
     circle(pressX, pressY, size*2);
+  }
+}
+
+void saveSpheres(){
+        String [] saveData = new String[spheres.size()];
+      int index = 0;
+      saveStrings("sphere-settings.txt", new String [0]);
+      for (Sphere sp: spheres){
+        saveData[index] = ""+sp.x+","+sp.y+","+sp.radius+","+sp.id+","+sp.group;
+        saveStrings("sphere-settings.txt", saveData);
+        index++;
+        //int x_, int y_, int radius_, String track_, PApplet pa_, int id_, int group_
+      }
+}
+
+void loadSpheres(){
+  String [] sp = loadStrings("sphere-settings.txt");
+  for (int i = 0; i < sp.length; i++){
+    String [] entry = split(sp[i], ',');
+    Sphere s = new Sphere(int(entry[0]), int(entry[1]), int(entry[2]), null, this, int(entry[3]), int(entry[4]));
+        
+    s.vol.setVal(s.vol.getMin(), millisToFadeOutside);  
+    spheres.add(s);
   }
 }
