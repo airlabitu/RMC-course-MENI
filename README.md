@@ -20,7 +20,7 @@ Open Processing and install the following libraries from the menu: **Sketch -> i
 - Open and run: **Sound_control** from this repository
     - add circles over objects in Sound_control
 
-[instruction video](https://airlab.itu.dk/)
+[setup instruction video part 1](https://youtu.be/SQx9Hn1EwzM)
 
 ### Tech setup test
 (Make list with students)
