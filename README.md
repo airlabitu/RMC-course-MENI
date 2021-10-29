@@ -21,7 +21,7 @@ Open Processing and install the following libraries from the menu: **Sketch -> i
 - Setup MIDI inpout in Ableton
 - Open and run: **KinectBlobTracker** from this repository
 - Open and run: **Sound_control** from this repository
-- Add circles over objects in Sound_control
+    - Add circles over objects in Sound_control
 
 [instruction video](https://airlab.itu.dk/)
 
