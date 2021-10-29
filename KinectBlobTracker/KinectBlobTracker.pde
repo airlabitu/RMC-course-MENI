@@ -9,6 +9,7 @@
 
 // ToDo
   // Tjek og implementer bedre performance - e.g. clear video/kinect/video objekter efter mode change
+  // disable OSC while loading settings
 
 import processing.video.*;
 import org.openkinect.freenect.*;
