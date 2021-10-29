@@ -345,3 +345,7 @@
 29/10/2021:13:21:28 : Starting up sketch
 29/10/2021:13:21:30 : Starting kinect
 29/10/2021:13:21:31 : Initiating kinect depth: kinect.initDepth()
+29/10/2021:14:36:5 : ------------------
+29/10/2021:14:36:5 : Starting up sketch
+29/10/2021:14:36:7 : Starting kinect
+29/10/2021:14:36:7 : Kinect number of devices 0 or less

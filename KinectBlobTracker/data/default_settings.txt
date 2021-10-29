@@ -3,7 +3,7 @@ Max depth :1013
 Threshold :40.0
 Dist threshold :5.0
 Draw blobs :true
-Ignore areas :|180,148,44|354,56,31|176,312,29|296,264,29|397,158,24|452,242,28|402,358,26|613,343,46|600,472,38
+Ignore areas :
 Input mode (0=kinect, 1=webcam, 2=simulation video) :0
 Min blob size :500
 OSC blob data primary connection  [listening port] [remote port] [remote IP] :12345:6789:localhost
