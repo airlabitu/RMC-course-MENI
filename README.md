@@ -1,7 +1,9 @@
 # RMC-course-MENI
 ## Repository for the RMC course Musical expressions for new interfaces (fall 2021)
 
-### Preperations
+### AIR LAB day 1 - 29th of October
+
+#### Preperations
 Download Processing version 3.5.4 [link](https://github.com/processing/processing/releases/download/processing-0270-3.5.4/processing-3.5.4-macosx.zip)<br >
 Move processing to your **Applications** folder<br >
 Download this repository, and move it somewhere you can find it :-)<br >
@@ -12,7 +14,7 @@ Open Processing and install the following libraries from the menu: **Sketch -> i
 - Open Kinect for Processing (by: Daniel Shiffman and Thomas Sanchez)
 - Video (by: The Processing Foundation)
 
-### Tech setup guide
+#### Tech setup guide
 - Place the objects (if not already done)
 - Setup **Bus 1** in MIDI studio (from: **Audio MIDI Setup -> window -> Show MIDI studio**)
 - Setup MIDI input in Ableton
@@ -21,8 +23,6 @@ Open Processing and install the following libraries from the menu: **Sketch -> i
     - add circles over objects in Sound_control
 
 [setup instruction video part 1](https://youtu.be/SQx9Hn1EwzM)
-
-### Tech setup test
-(Make list with students)
+[setup instruction video part 2](https://youtu.be/urzS0Gm8BKo)
 
 
