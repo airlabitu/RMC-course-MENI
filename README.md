@@ -9,7 +9,7 @@
 - Open and run: **Sound_control** from this repository
 - Add circles over objects in Sound_control
 
-(https://airlab.itu.dk/)[instruction video]
+[instruction video](https://airlab.itu.dk/)
 
 ### Tech setup test
 (Make list with students)
