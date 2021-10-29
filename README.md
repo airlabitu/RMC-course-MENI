@@ -4,7 +4,7 @@
 ### Preperations
 Download Processing version 3.5.4 [link](https://github.com/processing/processing/releases/download/processing-0270-3.5.4/processing-3.5.4-macosx.zip)<br >
 Move processing to your **Applications** folder<br >
-Download this repository, and move it somevhere you can find it :-)<br >
+Download this repository, and move it somewhere you can find it :-)<br >
 Open Processing and install the following libraries from the menu: **Sketch -> import library -> add library**<br >
 - Sound (by: The Processing Foundation)
 - oscP5 (by: Andreas Schlegel)
