@@ -1,8 +1,8 @@
 // ToDo
-// make use of real GUI elements
-// make auto save/load of settings
-// make new midi mapper
-
+// move midi mapped values outside qr object
+// make mapping code coherent
+// write better comments
+// make on/off midi message
 
 import processing.video.*;
 import boofcv.processing.*;
@@ -17,7 +17,9 @@ MidiBus myBus; // MIDI object for sending MIDI to Ableton Live
 Capture cam;
 SimpleQrCode detector;
 
-ArrayList<QRObject> objects = new ArrayList<QRObject>();
+//ArrayList<QRObject> objects = new ArrayList<QRObject>();
+
+HashMap<String,QRObject> QRObjects = new HashMap<String,QRObject>();
 
 int trackingCenterX, trackingCenterY;
 int maxDist;
@@ -55,27 +57,29 @@ void draw() {
       
       if (qr.bounds.size() == 4){
         
-        if (isObjectNew(qr.message)) objects.add(new QRObject(int(qr.message)));
-        
+        if (!QRObjects.containsKey(qr.message)) QRObjects.put(qr.message, new QRObject(int(qr.message))); // add qr object if not already existing
+                
         Point2D_F64 p0 = qr.bounds.get(0);
         Point2D_F64 p1 = qr.bounds.get(1);
         Point2D_F64 p2 = qr.bounds.get(2);
         Point2D_F64 p3 = qr.bounds.get(3);
         
-        float QR_CenterX = ((float)p0.x + (float)p1.x + (float)p2.x + (float)p3.x) / 4;
-        float QR_CenterY = ((float)p0.y + (float)p1.y + (float)p2.y + (float)p3.y) / 4;
-        int QR_self_rotation = (int)getRotation((float)p0.x, (float)p0.y, (float)p1.x, (float)p1.y);
-        int mapped_QR_self_rotation = constrain((int)map(QR_self_rotation, 0, 359, 0, 127), 0, 127);
-        int trackingCenterRotation = (int)getRotation(QR_CenterX, QR_CenterY, trackingCenterX, trackingCenterY);
-        int mapped_trackingCenterRotation = constrain((int)map(trackingCenterRotation, 0, 359, 0, 127), 0, 127);
-        int trackingCenterDistance = (int)dist(QR_CenterX, QR_CenterY, trackingCenterX, trackingCenterY);
-        int mapped_trackingCenterDistance = constrain((int)map(trackingCenterDistance, 0, maxDist, 0, 127), 0, 127);
+        QRObject QR_obj = QRObjects.get(qr.message);
+        
+        QR_obj.x = ((float)p0.x + (float)p1.x + (float)p2.x + (float)p3.x) / 4;
+        QR_obj.y = ((float)p0.y + (float)p1.y + (float)p2.y + (float)p3.y) / 4;
+        QR_obj.setSelfRotation((int)getRotation((float)p0.x, (float)p0.y, (float)p1.x, (float)p1.y));
+        
+        QR_obj.trackingCenterRotation = (int)getRotation(QR_obj.x, QR_obj.y, trackingCenterX, trackingCenterY);
+        QR_obj.trackingCenterRotation = constrain((int)map(QR_obj.trackingCenterRotation, 0, 359, 0, 127), 0, 127); // mapping value to MIDI scale
+        QR_obj.trackingCenterDistance = (int)dist(QR_obj.x, QR_obj.y, trackingCenterX, trackingCenterY);
+        QR_obj.trackingCenterDistance = constrain((int)map(QR_obj.trackingCenterDistance, 0, maxDist, 0, 127), 0, 127);
         
         // send out midi
         if (sendMIDI){
-          myBus.sendControllerChange(0, int(qr.message), mapped_trackingCenterRotation); // send midi data parameter order (channel, number, value)
-          myBus.sendControllerChange(0, int(qr.message)+1, mapped_trackingCenterDistance); // send midi data parameter order (channel, number, value)
-          myBus.sendControllerChange(0, int(qr.message)+2, mapped_QR_self_rotation); // send midi data parameter order (channel, number, value)
+          myBus.sendControllerChange(0, int(qr.message), QR_obj.trackingCenterRotation); // send midi data parameter order (channel, number, value)
+          myBus.sendControllerChange(0, int(qr.message)+1, QR_obj.trackingCenterDistance); // send midi data parameter order (channel, number, value)
+          myBus.sendControllerChange(0, int(qr.message)+2, QR_obj.midiRotationVal); // send midi data parameter order (channel, number, value)
         }
         // draw QR marker tracking data
         
@@ -88,7 +92,8 @@ void draw() {
         line((float)p2.x, (float)p2.y, (float)p3.x, (float)p3.y);
         line((float)p3.x, (float)p3.y, (float)p0.x, (float)p0.y);
         
-        ellipse(QR_CenterX, QR_CenterY, 10, 10);
+        ellipse(QR_obj.x, QR_obj.y, 10, 10);
+        //ellipse(QR_CenterX, QR_CenterY, 10, 10);
         
         textSize(15);
         fill(#FA05FF);
@@ -96,9 +101,12 @@ void draw() {
         text("1", (float)p1.x, (float)p1.y);
         stroke(0, 255, 255);
         strokeWeight(1);
-        line(QR_CenterX, QR_CenterY, trackingCenterX, trackingCenterY);
+        line(QR_obj.x, QR_obj.y, trackingCenterX, trackingCenterY);
+        //line(QR_CenterX, QR_CenterY, trackingCenterX, trackingCenterY);
         
-        QR_info += "\nID: " + qr.message + "\nOwn rotation: " + mapped_QR_self_rotation + "\nGlobal rotation: " + mapped_trackingCenterRotation + "\nDist to center: " + mapped_trackingCenterDistance+"\n\n";
+        QR_info += "\nID: " + qr.message + "\n" + "Own angle: " + QR_obj.angle + " move: " + QR_obj.angleMove + " rotation: " + QR_obj.rotationVal + " midi rotation: " + QR_obj.midiRotationVal + "\nGlobal rotation: " + QR_obj.trackingCenterRotation + "\nDist to center: " + QR_obj.trackingCenterDistance+"\n\n";
+        //QR_info += "\nID: " + qr.message + "\nOwn rotation: " + mapped_QR_self_rotation + "\nGlobal rotation: " + mapped_trackingCenterRotation + "\nDist to center: " + mapped_trackingCenterDistance+"\n\n";
+
         
       }
     }
@@ -164,13 +172,4 @@ void keyReleased(){
     trackingCenterX = mouseX;
     trackingCenterY = mouseY;
   }
-}
-
-boolean isObjectNew(String id_){
-  if (objects != null){
-    for (QRObject obj : objects){
-      if (obj.id == int(id_)) return false;
-    } 
-  }
-  return true;
 }
