@@ -4,6 +4,9 @@ class QRObject{
   float y;
   int id;
   
+  boolean isActive;
+  int framesSinceActive;
+  
   int lastAngle;
   int angle;
   int angleMove;
@@ -27,6 +30,8 @@ class QRObject{
     id = id_;
     
     lastAngle = -1;
+    isActive = false;
+    
     println("Object added: ", id);
     
   }
@@ -46,8 +51,8 @@ class QRObject{
     angleMove = int(degrees(lastVector.angleBetween(lastVector,currentVector))); // total rotational move
     
     if (angle < lastAngle) rotationVal = constrain(rotationVal + angleMove, 0, 359); // rotation one direction
-    else if (angle > lastAngle) rotationVal = constrain(rotationVal - angleMove, 0, 359); // rotation the other direction
-    midiRotationVal = int(map(rotationVal, 0, 359, 0, 127)); // map to midi
+    else if (angle > lastAngle) rotationVal = constrain(rotationVal - angleMove*2, 0, 359); // rotation the other direction
+    midiRotationVal = int(map(rotationVal, 0, 359, 127, 0)); // map to midi
     
     lastAngle = angle;
     

@@ -11,6 +11,7 @@ import georegression.struct.shapes.Polygon2D_F64;
 import georegression.struct.point.Point2D_F64;
 import boofcv.alg.fiducial.qrcode.QrCode;
 import themidibus.*;          // library for Midi communication
+import java.util.Map;
 
 MidiBus myBus; // MIDI object for sending MIDI to Ableton Live
 
@@ -57,7 +58,10 @@ void draw() {
       
       if (qr.bounds.size() == 4){
         
+        
+        
         if (!QRObjects.containsKey(qr.message)) QRObjects.put(qr.message, new QRObject(int(qr.message))); // add qr object if not already existing
+        
                 
         Point2D_F64 p0 = qr.bounds.get(0);
         Point2D_F64 p1 = qr.bounds.get(1);
@@ -65,6 +69,10 @@ void draw() {
         Point2D_F64 p3 = qr.bounds.get(3);
         
         QRObject QR_obj = QRObjects.get(qr.message);
+        
+        if (!QR_obj.isActive) QR_obj.isActive = true; 
+        
+        QR_obj.framesSinceActive = 0;
         
         QR_obj.x = ((float)p0.x + (float)p1.x + (float)p2.x + (float)p3.x) / 4;
         QR_obj.y = ((float)p0.y + (float)p1.y + (float)p2.y + (float)p3.y) / 4;
@@ -110,6 +118,21 @@ void draw() {
         
       }
     }
+    /*
+    for (int i = 0; i < QRObjects.size(); i++){
+      QRObject QR_obj = QRObjects.get(i);
+      if (!QR_obj.isActive) QR_obj.framesSinceActive++;
+      if (QR_obj.framesSinceActive > 10) QR_obj.isActive = false;
+    }
+    */
+    
+    /*
+    for (Map.Entry me : QRObjects.entrySet()) {
+      if (me.getValue().)
+      print(me.getKey() + " is ");
+      println(me.getValue());
+    }
+    */
     
     
     fill(255);
@@ -139,7 +162,7 @@ void initializeCamera( int desiredWidth, int desiredHeight ) {
     println("There are no cameras available for capture.");
     exit();
   } else {
-    cam = new Capture(this, desiredWidth, desiredHeight, Capture.list()[0]);
+    cam = new Capture(this, desiredWidth, desiredHeight, Capture.list()[1]);
     cam.start();
   }
 }
