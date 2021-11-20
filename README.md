@@ -28,28 +28,18 @@ Open Processing and install the following libraries from the menu: **Sketch -> i
 
 ### AIR LAB Quadrophonic setup day 1 - 19th of November
 
-QR koderne er lavet således at de hver indeholder et af tallene, 1, 10, 20, 30... og bliver softwaren indrettet til at sende CC beskeder ud på numre der følger systemet herunder...
+The object fiducials (code tags) holds the ID numbers 10, 20, 30, 40, 50, 60, 70, 80 etc. 
 
-(QR 1) 1,2,3
-(QR 10) 10,11,12
-(QR 20) 20,21,22
-etc.
+For the MIDI mapping this means the following:
 
+Object ID (10) sends the following control change messages:
+CC message (channel = 0, number = 10, value = 0-127) (objects rotation around tracking area center) - maps to AZIM
+CC message (channel = 0, number = 11, value = 0-127) (objects distance to tracking area center) - maps to RADIUS
+CC message (channel = 0, number = 12, value = 0-127) (objects own rotation)
+CC message (channel = 0, number = 13, value = 0 or 127) (127 when object enters tracking area, 0 when it leaves again)
+CC message (channel = 0, number = 14, value = 0-127) (same triggers as 13 but fades between the two boundry values)
 
-Her lige to eksempler på objekter->beskeder:
+Object ID (20) sends the following control change messages:
+CC message (channel = 0, number = 20, value = 0-127) (objects rotation around tracking area center) used for spatialization AZIM
+... and it continues like this, with increments of 10 between first CC message number for each object
 
-
-De sender som sagt alle 3 CC MIDI beskeder. 
-
-
-For QR koden 1 ser det således ud.
-
-CC besked (channel = 0, number = 1, value = "rotation om kamera center")
-CC besked (channel = 0, number = 2, value = "radius/afstand til kamera center")
-CC besked (channel = 0, number = 3, value = "rotation om objektets eget center")
-
-For QR koden 10 ser det således ud.
-
-CC besked (channel = 0, number = 10, value = "rotation om kamera center")
-CC besked (channel = 0, number = 11, value = "radius/afstand til kamera center")
-CC besked (channel = 0, number = 12, value = "rotation om objektets eget center")
