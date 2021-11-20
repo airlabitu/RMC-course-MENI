@@ -2,6 +2,7 @@
 // move midi mapped values outside qr object
 // make mapping code coherent
 // write better comments
+// implement OSC option
 
 import processing.video.*;
 import boofcv.processing.*;
@@ -10,12 +11,13 @@ import georegression.struct.shapes.Polygon2D_F64;
 import georegression.struct.point.Point2D_F64;
 import boofcv.alg.fiducial.qrcode.QrCode;
 import themidibus.*;          // library for Midi communication
-import java.util.Map;
+import java.util.*;
 
 MidiBus myBus; // MIDI object for sending MIDI to Ableton Live
 
 Capture cam;
-SimpleQrCode detector;
+//SimpleQrCode detector;
+SimpleFiducial detector;
 
 HashMap<String,QRObject> QRObjects = new HashMap<String,QRObject>();
 
@@ -27,12 +29,14 @@ void setup() {
   // Open up the camera so that it has a video feed to process
   initializeCamera(1920/2, 1080/2);
   surface.setSize(cam.width, cam.height);
+  detector = Boof.fiducialSquareBinaryRobust(0.1);
+  detector.guessCrappyIntrinsic(cam.width,cam.height);
   
   // set tracking area origin
   trackingCenterX = cam.width/2;
   trackingCenterY = cam.height/2;
   
-  detector = Boof.detectQR();
+  //detector = Boof.detectQR();
   
   myBus = new MidiBus(this, -1, "Bus 1"); // Create a new MidiBus with no input device and "Bus 1" as the output device.
   
@@ -43,36 +47,56 @@ void draw() {
   if (cam.available() == true) {
     cam.read();
 
-    List<QrCode> found = detector.detect(cam);
+    List<FiducialFound> found = detector.detect(cam);
 
     image(cam, 0, 0);
     
     String QR_info = "";
     
-    for( QrCode qr : found ) {
+    for( FiducialFound fiducial : found ) {
+      println("FS: ", found.size());
+      float angle;
+      int x, y;
+      int id;
       
-      if (qr.bounds.size() == 4){
+      // get ID
+      id = (int)fiducial.getId();
+      //if (id == 1) return; // to prevent it from failing when adding id 1 by mistake in beginning of program
+      // getting fiducials center coordinate
+      x = (int)fiducial.getImageLocation().getX();
+      y = (int)fiducial.getImageLocation().getY();
+      
+      // calculating angle
+      if (fiducial.getFiducialToCamera().getR().getData()[1] < 0){
+        angle = map((float)fiducial.getFiducialToCamera().getR().getData()[0], 1, -1, 0, 180);
+      }
+      else {
+        angle = map((float)fiducial.getFiducialToCamera().getR().getData()[0], -1, 1, 180, 360);
+      }
+      
+      //if (fiducial.bounds.size() == 4){
         
-        if (!QRObjects.containsKey(qr.message)) QRObjects.put(qr.message, new QRObject(int(qr.message))); // add qr object if not already existing
+      if (!QRObjects.containsKey(""+id)) QRObjects.put(""+id, new QRObject(id)); // add qr object if not already existing
+      //if (!QRObjects.containsKey(id)) QRObjects.put(qr.message, new QRObject(int(qr.message))); // add qr object if not already existing
                 
-        Point2D_F64 p0 = qr.bounds.get(0);
-        Point2D_F64 p1 = qr.bounds.get(1);
-        Point2D_F64 p2 = qr.bounds.get(2);
-        Point2D_F64 p3 = qr.bounds.get(3);
+        //Point2D_F64 p0 = qr.bounds.get(0);
+        //Point2D_F64 p1 = qr.bounds.get(1);
+        //Point2D_F64 p2 = qr.bounds.get(2);
+        //Point2D_F64 p3 = qr.bounds.get(3);
         
-        QRObject QR_obj = QRObjects.get(qr.message);
+        QRObject QR_obj = QRObjects.get(""+id);
         
         // send midi 'on' messages
         if (!QR_obj.isActive) {
           QR_obj.isActive = true;
-          if (sendMIDI) myBus.sendControllerChange(0, int(qr.message)+3, 127); // send midi data parameter order (channel, number, value)
+          if (sendMIDI) myBus.sendControllerChange(0, id+3, 127); // send midi data parameter order (channel, number, value)
         }
         
         QR_obj.framesSinceActive = 0;
         
-        QR_obj.x = ((float)p0.x + (float)p1.x + (float)p2.x + (float)p3.x) / 4;
-        QR_obj.y = ((float)p0.y + (float)p1.y + (float)p2.y + (float)p3.y) / 4;
-        QR_obj.setSelfRotation((int)getRotation((float)p0.x, (float)p0.y, (float)p1.x, (float)p1.y));
+        QR_obj.x = x;
+        QR_obj.y = y;
+        QR_obj.setSelfRotation((int)angle);
         
         QR_obj.trackingCenterRotation = (int)getRotation(QR_obj.x, QR_obj.y, trackingCenterX, trackingCenterY);
         QR_obj.trackingCenterRotation = constrain((int)map(QR_obj.trackingCenterRotation, 0, 359, 0, 127), 0, 127); // mapping value to MIDI scale
@@ -81,38 +105,27 @@ void draw() {
         
         // send out midi
         if (sendMIDI){
-          myBus.sendControllerChange(0, int(qr.message), QR_obj.trackingCenterRotation); // send midi data parameter order (channel, number, value)
-          myBus.sendControllerChange(0, int(qr.message)+1, QR_obj.trackingCenterDistance); // send midi data parameter order (channel, number, value)
-          myBus.sendControllerChange(0, int(qr.message)+2, QR_obj.midiRotationVal); // send midi data parameter order (channel, number, value)
+          myBus.sendControllerChange(0, id, QR_obj.trackingCenterRotation); // send midi data parameter order (channel, number, value)
+          myBus.sendControllerChange(0, id+1, QR_obj.trackingCenterDistance); // send midi data parameter order (channel, number, value)
+          myBus.sendControllerChange(0, id+2, QR_obj.midiRotationVal); // send midi data parameter order (channel, number, value)
         }
         // draw QR marker tracking data
         
-        strokeWeight(5);
         
-        stroke(255, 0, 0);
-        line((float)p0.x, (float)p0.y, (float)p1.x, (float)p1.y);
-        stroke(0, 255, 0);
-        line((float)p1.x, (float)p1.y, (float)p2.x, (float)p2.y);
-        line((float)p2.x, (float)p2.y, (float)p3.x, (float)p3.y);
-        line((float)p3.x, (float)p3.y, (float)p0.x, (float)p0.y);
+        // visualize
+      fill(255, 0, 255);
+      textSize(20);
+      ellipse(x, y, 10, 10);
+      text("angle: " + (int)angle +"\nid: " + id, x+40, y);
+      
         
-        ellipse(QR_obj.x, QR_obj.y, 10, 10);
-        
-        textSize(15);
-        fill(#FA05FF);
-        text("0", (float)p0.x, (float)p0.y);
-        text("1", (float)p1.x, (float)p1.y);
-        stroke(0, 255, 255);
-        strokeWeight(1);
-        line(QR_obj.x, QR_obj.y, trackingCenterX, trackingCenterY);
-        
-        QR_info += "\nID: " + qr.message + "\nGlobal rotation: " + QR_obj.trackingCenterRotation + "\nDist to center: " + QR_obj.trackingCenterDistance + "\nOwn rotation: " + QR_obj.midiRotationVal + "\non/off: " + QR_obj.isActive + "\non/off fade: " + QR_obj.isActiveFade + "\n\n";
+      QR_info += "\nID: " + id + "\nGlobal rotation: " + QR_obj.trackingCenterRotation + "\nDist to center: " + QR_obj.trackingCenterDistance + "\nOwn rotation: " + QR_obj.midiRotationVal + "\non/off: " + QR_obj.isActive + "\non/off fade: " + QR_obj.isActiveFade + "\n\n";
 
         //QR_info += "\nID: " + qr.message + "\n" + "Own angle: " + QR_obj.angle + " move: " + QR_obj.angleMove + " rotation: " + QR_obj.rotationVal + " midi rotation: " + QR_obj.midiRotationVal + "\nGlobal rotation: " + QR_obj.trackingCenterRotation + "\nDist to center: " + QR_obj.trackingCenterDistance+"\n\n";
         //QR_info += "\nID: " + qr.message + "\nOwn rotation: " + mapped_QR_self_rotation + "\nGlobal rotation: " + mapped_trackingCenterRotation + "\nDist to center: " + mapped_trackingCenterDistance+"\n\n";
 
         
-      }
+      //}
     }
     
     // change object activ states and send MIDI 'off' messages + 'on/off' fade messages
