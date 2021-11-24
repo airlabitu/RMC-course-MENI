@@ -51,8 +51,8 @@ class QRObject{
   
     angleMove = int(degrees(lastVector.angleBetween(lastVector,currentVector))); // total rotational move
     
-    if (angle < lastAngle) rotationVal = constrain(rotationVal + angleMove, 0, 359); // rotation one direction
-    else if (angle > lastAngle) rotationVal = constrain(rotationVal - angleMove*2, 0, 359); // rotation the other direction
+    if (angle < lastAngle) rotationVal = constrain(rotationVal + angleMove*3, 0, 359); // rotation one direction
+    else if (angle > lastAngle) rotationVal = constrain(rotationVal - angleMove*3, 0, 359); // rotation the other direction
     midiRotationVal = int(map(rotationVal, 0, 359, 127, 0)); // map to midi
     
     lastAngle = angle;

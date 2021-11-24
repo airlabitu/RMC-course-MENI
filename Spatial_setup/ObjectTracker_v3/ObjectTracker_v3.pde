@@ -3,6 +3,7 @@
 // make mapping code coherent
 // write better comments
 // implement OSC option
+// rename QR class etc.
 
 import processing.video.*;
 import boofcv.processing.*;
@@ -27,9 +28,10 @@ boolean sendMIDI = true;
 
 void setup() {
   // Open up the camera so that it has a video feed to process
-  initializeCamera(1920/2, 1080/2);
+  initializeCamera(1920, 1080);
   surface.setSize(cam.width, cam.height);
   detector = Boof.fiducialSquareBinaryRobust(0.1);
+  //detector = Boof.fiducialSquareBinary(0.1,100);
   detector.guessCrappyIntrinsic(cam.width,cam.height);
   
   // set tracking area origin
