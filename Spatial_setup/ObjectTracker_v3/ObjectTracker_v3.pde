@@ -28,11 +28,13 @@ boolean sendMIDI = true;
 
 void setup() {
   // Open up the camera so that it has a video feed to process
-  initializeCamera(1920, 1080);
+  initializeCamera(int(1920/2), int(1080/2));
   surface.setSize(cam.width, cam.height);
   detector = Boof.fiducialSquareBinaryRobust(0.1);
   //detector = Boof.fiducialSquareBinary(0.1,100);
   detector.guessCrappyIntrinsic(cam.width,cam.height);
+  
+   
   
   // set tracking area origin
   trackingCenterX = cam.width/2;
@@ -40,7 +42,7 @@ void setup() {
   
   //detector = Boof.detectQR();
   
-  myBus = new MidiBus(this, -1, "Bus 1"); // Create a new MidiBus with no input device and "Bus 1" as the output device.
+  myBus = new MidiBus(this, -1, "RMC"); // Create a new MidiBus with no input device and "Bus 1" as the output device.
   
   maxDist = (int)dist(trackingCenterX, trackingCenterY, width, height);
 }
@@ -65,7 +67,7 @@ void draw() {
       id = (int)fiducial.getId();
       //if (id == 1) return; // to prevent it from failing when adding id 1 by mistake in beginning of program
       // getting fiducials center coordinate
-      x = (int)fiducial.getImageLocation().getX();
+      x = width-(int)fiducial.getImageLocation().getX();
       y = (int)fiducial.getImageLocation().getY();
       
       // calculating angle
@@ -110,11 +112,17 @@ void draw() {
           myBus.sendControllerChange(0, id, QR_obj.trackingCenterRotation); // send midi data parameter order (channel, number, value)
           myBus.sendControllerChange(0, id+1, QR_obj.trackingCenterDistance); // send midi data parameter order (channel, number, value)
           myBus.sendControllerChange(0, id+2, QR_obj.midiRotationVal); // send midi data parameter order (channel, number, value)
+          /*
+          println(id, QR_obj.trackingCenterRotation);
+          println(id+1, QR_obj.trackingCenterDistance);
+          println(id+2, QR_obj.midiRotationVal);
+          println();
+          */
         }
         // draw QR marker tracking data
         
         
-        // visualize
+      // visualize
       fill(255, 0, 255);
       textSize(20);
       ellipse(x, y, 10, 10);
@@ -146,7 +154,14 @@ void draw() {
       //println(QR_obj.id, QR_obj.isActive, QR_obj.framesSinceActive, QR_obj.isActiveFade);
     }
     
-    
+    /*
+    for (Map.Entry me : QRObjects.entrySet()) {
+      QRObject QR_obj = QRObjects.get(me.getKey());
+      QR_info += "\nID: " + QR_obj.id + "\nGlobal rotation: " + QR_obj.trackingCenterRotation + "\nDist to center: " + QR_obj.trackingCenterDistance + "\nOwn rotation: " + QR_obj.midiRotationVal + "\non/off: " + QR_obj.isActive + "\non/off fade: " + QR_obj.isActiveFade + "\n\n";
+      //QR_obj.framesSinceActive++;
+      
+    }
+    */
     
     fill(255);
     textSize(10);
@@ -163,6 +178,10 @@ void draw() {
     line(trackingCenterX, trackingCenterY-10, trackingCenterX, trackingCenterY+10);
     ellipse(trackingCenterX, trackingCenterY, maxDist*2, maxDist*2);
     
+    //PImage img = cam;
+    //img.getModifiedX2()
+    
+    
   }
 }
 
@@ -176,8 +195,12 @@ void initializeCamera( int desiredWidth, int desiredHeight ) {
     println("There are no cameras available for capture.");
     exit();
   } else {
-    cam = new Capture(this, desiredWidth, desiredHeight, Capture.list()[0]);
+    String [] source = loadStrings("source.txt");
+    
+    cam = new Capture(this, desiredWidth, desiredHeight, Capture.list()[int(source[0])]);
     cam.start();
+    
+    
   }
 }
 
